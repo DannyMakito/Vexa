@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-vexa-dark: #0f1f1d;
+  --color-vexa-light: #fefdf9;
+  --color-vexa-brand: #dcfc58;
+  --color-vexa-muted: #1e3330;
+  
+  --font-sans: "Inter", sans-serif;
+  --font-serif: "Instrument Serif", serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply font-sans bg-vexa-light text-vexa-dark antialiased;
+  }
+}
