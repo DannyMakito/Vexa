@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { X } from 'lucide-react';
 
 export default function DemoForm() {
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const form = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
     const handleOpen = (e: MouseEvent) => {
@@ -31,10 +33,35 @@ export default function DemoForm() {
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real application, you would send the data to your backend here
-    setIsSubmitted(true);
+    
+    if (!form.current) return;
+    setIsSubmitting(true);
+
+    try {
+      const formData = new FormData(form.current);
+      const data = Object.fromEntries(formData.entries());
+
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send email');
+      }
+
+      setIsSubmitted(true);
+    } catch (error) {
+      console.error('FAILED...', error);
+      alert('Failed to send request. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -84,12 +111,13 @@ export default function DemoForm() {
                </button>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+            <form ref={form} onSubmit={handleSubmit} className="flex flex-col gap-5">
               <div className="flex flex-col gap-2">
                 <label htmlFor="name" className="text-sm font-semibold text-vexa-dark">Full Name</label>
                 <input 
                   type="text" 
                   id="name" 
+                  name="name"
                   required
                   className="bg-vexa-light border border-vexa-dark/10 rounded-xl px-4 py-3 text-vexa-dark focus:outline-none focus:border-vexa-brand focus:ring-1 focus:ring-vexa-brand transition-colors"
                   placeholder="John Doe"
@@ -101,6 +129,7 @@ export default function DemoForm() {
                 <input 
                   type="email" 
                   id="email" 
+                  name="email"
                   required
                   className="bg-vexa-light border border-vexa-dark/10 rounded-xl px-4 py-3 text-vexa-dark focus:outline-none focus:border-vexa-brand focus:ring-1 focus:ring-vexa-brand transition-colors"
                   placeholder="john@yourcompany.com"
@@ -111,6 +140,7 @@ export default function DemoForm() {
                 <label htmlFor="description" className="text-sm font-semibold text-vexa-dark">Project Description</label>
                 <textarea 
                   id="description" 
+                  name="description"
                   required
                   rows={4}
                   className="bg-vexa-light border border-vexa-dark/10 rounded-xl px-4 py-3 text-vexa-dark focus:outline-none focus:border-vexa-brand focus:ring-1 focus:ring-vexa-brand transition-colors resize-none"
@@ -118,8 +148,12 @@ export default function DemoForm() {
                 ></textarea>
               </div>
 
-              <button type="submit" className="bg-vexa-brand text-vexa-dark px-8 py-4 rounded-xl text-lg font-bold hover:bg-[#cbf046] transition-all mt-2 w-full shadow-lg shadow-vexa-brand/20">
-                Submit Request
+              <button 
+                type="submit" 
+                disabled={isSubmitting}
+                className="bg-vexa-brand text-vexa-dark px-8 py-4 rounded-xl text-lg font-bold hover:bg-[#cbf046] transition-all mt-2 w-full shadow-lg shadow-vexa-brand/20 disabled:opacity-70 disabled:cursor-not-allowed"
+              >
+                {isSubmitting ? 'Submitting...' : 'Submit Request'}
               </button>
             </form>
           )}

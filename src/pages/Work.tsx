@@ -2,6 +2,14 @@ import React from 'react';
 
 const projects = [
   {
+    title: 'Akhalwayas fast food restaurant',
+    category: 'E-commerce / Branding and Website',
+    image: 'https://i.postimg.cc/y6X2B6LT/Akhalwaya-s.jpg',
+    bgColor: 'bg-[#7f4a3c]', // Match screenshot brown
+    textColor: 'text-white',
+    imgStyle: 'object-cover rounded-xl',
+  },
+  {
     title: 'University of California\nat San Francisco',
     category: 'Institute of Global Health Sciences',
     image: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=800&q=80',
@@ -17,14 +25,7 @@ const projects = [
     textColor: 'text-white',
     imgStyle: 'object-cover rounded-[2.5rem]',
   },
-  {
-    title: 'Scarlett&Ameera',
-    category: 'E-commerce / Branding and Website',
-    image: 'https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&w=800&q=80',
-    bgColor: 'bg-[#7f4a3c]', // Match screenshot brown
-    textColor: 'text-white',
-    imgStyle: 'object-cover rounded-xl',
-  }
+  
 ];
 
 export default function Work() {
