@@ -8,6 +8,7 @@ const projects = [
     bgColor: 'bg-[#7f4a3c]', // Match screenshot brown
     textColor: 'text-white',
     imgStyle: 'object-cover rounded-xl',
+    link: 'https://akhalwaya-s.vercel.app/',
   },
   {
     title: 'University of California\nat San Francisco',
@@ -33,33 +34,44 @@ export default function Work() {
     <div className="pt-28 pb-20 bg-black min-h-screen">
       <div className="w-full px-4 md:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {projects.map((project, index) => (
-            <div 
-              key={index} 
-              className={`group flex flex-col h-[70vh] lg:h-[85vh] min-h-[600px] relative overflow-hidden cursor-pointer ${project.bgColor} ${project.textColor}`}
-            >
-              {/* Image Container - takes up top portion */}
-              <div className="flex-1 w-full flex items-center justify-center p-8 lg:p-16 overflow-hidden">
-                <div className="relative w-full h-full transition-transform duration-700 ease-in-out group-hover:scale-[1.03]">
-                   <img 
-                     src={project.image} 
-                     alt="Project preview" 
-                     className={`w-full h-full shadow-[0_20px_50px_rgba(0,0,0,0.5)] ${project.imgStyle}`}
-                   />
+          {projects.map((project, index) => {
+            const content = (
+              <>
+                {/* Image Container - takes up top portion */}
+                <div className="flex-1 w-full flex items-center justify-center p-8 lg:p-16 overflow-hidden">
+                  <div className="relative w-full h-full transition-transform duration-700 ease-in-out group-hover:scale-[1.03]">
+                     <img 
+                       src={project.image} 
+                       alt="Project preview" 
+                       className={`w-full h-full shadow-[0_20px_50px_rgba(0,0,0,0.5)] ${project.imgStyle}`}
+                     />
+                  </div>
                 </div>
-              </div>
 
-              {/* Text Content - at the bottom */}
-              <div className="w-full px-8 pb-12 lg:pb-16 text-center shrink-0">
-                <h2 className="text-4xl md:text-5xl lg:text-[2.75rem] font-serif mb-3 lg:mb-4 leading-[1.1] whitespace-pre-line tracking-tight">
-                  {project.title}
-                </h2>
-                <p className="text-sm md:text-base opacity-80 tracking-widest uppercase font-medium">
-                  {project.category}
-                </p>
+                {/* Text Content - at the bottom */}
+                <div className="w-full px-8 pb-12 lg:pb-16 text-center shrink-0">
+                  <h2 className="text-4xl md:text-5xl lg:text-[2.75rem] font-serif mb-3 lg:mb-4 leading-[1.1] whitespace-pre-line tracking-tight">
+                    {project.title}
+                  </h2>
+                  <p className="text-sm md:text-base opacity-80 tracking-widest uppercase font-medium">
+                    {project.category}
+                  </p>
+                </div>
+              </>
+            );
+
+            const className = `group flex flex-col h-[70vh] lg:h-[85vh] min-h-[600px] relative overflow-hidden cursor-pointer ${project.bgColor} ${project.textColor} no-underline scale-100 transition-transform active:scale-[0.98]`;
+
+            return project.link ? (
+              <a href={project.link} target="_blank" rel="noopener noreferrer" key={index} className={className}>
+                {content}
+              </a>
+            ) : (
+              <div key={index} className={className}>
+                {content}
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>

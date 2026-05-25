@@ -29,14 +29,11 @@ export default function Header() {
         <nav className="hidden lg:flex items-center gap-8 text-sm font-medium">
           <Link to="/services" className="hover:text-vexa-brand transition-colors">Services</Link>
           <Link to="/work" className="hover:text-vexa-brand transition-colors">Our Work</Link>
-          <a href="#why-us" className="hover:text-vexa-brand transition-colors">Why Us</a>
-          <a href="#resources" className="hover:text-vexa-brand transition-colors">Resources</a>
-          <a href="#pricing" className="hover:text-vexa-brand transition-colors">Pricing</a>
+          <Link to="/about" className="hover:text-vexa-brand transition-colors">About Us</Link>
         </nav>
 
         {/* CTA Buttons */}
         <div className="hidden lg:flex items-center gap-4">
-          <a href="#login" className="text-sm font-medium hover:text-vexa-brand transition-colors">Sign in</a>
           <a href="#demo" className="bg-vexa-brand text-vexa-dark px-6 py-3 rounded-full text-sm font-semibold hover:bg-[#cbf046] transition-colors">
             Book a demo
           </a>
@@ -57,13 +54,10 @@ export default function Header() {
           <nav className="flex flex-col gap-4 text-base font-medium">
             <Link to="/services" className="hover:text-vexa-brand transition-colors" onClick={() => setIsOpen(false)}>Services</Link>
             <Link to="/work" className="hover:text-vexa-brand transition-colors" onClick={() => setIsOpen(false)}>Our Work</Link>
-            <a href="#why-us" className="hover:text-vexa-brand transition-colors" onClick={() => setIsOpen(false)}>Why Us</a>
-            <a href="#resources" className="hover:text-vexa-brand transition-colors" onClick={() => setIsOpen(false)}>Resources</a>
-            <a href="#pricing" className="hover:text-vexa-brand transition-colors" onClick={() => setIsOpen(false)}>Pricing</a>
+            <Link to="/about" className="hover:text-vexa-brand transition-colors" onClick={() => setIsOpen(false)}>About Us</Link>
           </nav>
           
           <div className="flex flex-col gap-4 pt-4 border-t border-white/10">
-            <a href="#login" className="text-base font-medium hover:text-vexa-brand transition-colors" onClick={() => setIsOpen(false)}>Sign in</a>
             <a href="#demo" className="bg-vexa-brand text-vexa-dark px-6 py-3 rounded-full text-base font-semibold text-center hover:bg-[#cbf046] transition-colors" onClick={() => setIsOpen(false)}>
               Book a demo
             </a>
