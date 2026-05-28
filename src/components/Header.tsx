@@ -3,6 +3,7 @@ import { Menu, X } from 'lucide-react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { Link } from 'react-router-dom';
+import VexaLogo from './VexaLogo';
 
 export default function Header() {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -21,8 +22,8 @@ export default function Header() {
     <header className="fixed top-0 left-0 w-full z-50 transition-colors duration-300 bg-vexa-dark text-white border-b border-vexa-muted header-nav">
       <div className="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
         {/* Logo */}
-        <Link to="/" className="font-serif text-3xl font-bold italic translate-y-1">
-          Vexa
+        <Link to="/" className="flex items-center">
+          <VexaLogo />
         </Link>
 
         {/* Desktop Nav */}

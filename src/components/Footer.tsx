@@ -1,4 +1,5 @@
 import React from 'react';
+import VexaLogo from './VexaLogo';
 
 export default function Footer() {
   return (
@@ -14,8 +15,8 @@ export default function Footer() {
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 border-t border-white/10 pt-16 mb-16">
           <div className="col-span-1 lg:col-span-2">
-            <a href="/" className="font-serif text-5xl font-bold italic inline-block mb-6">
-              Vexa
+            <a href="/" className="inline-block mb-6">
+              <VexaLogo iconSize={48} />
             </a>
             <p className="text-white/50 max-w-sm">
               Your software and website development partner. High-performing digital solutions built to drive growth.
